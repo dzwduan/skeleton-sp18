@@ -1,5 +1,5 @@
 /** Class that determines whether or not a year is a leap year.
- *  @author YOUR NAME HERE
+ *  @author duanzhenwei
  */
 public class LeapYear {
 
@@ -13,6 +13,17 @@ public class LeapYear {
             System.out.printf("%d is not a leap year.\n", year);
         }
     }
+    /** check if leap year
+     * divisible by 400 or
+     * divisible by 4 and not by 100.
+     *  @param  year to be analyzed
+     * */
+    public static boolean isLeapYear(int year){
+        if(year%400==0 || (year%4==0 && year%100!=0)) return true;
+        return false;
+    }
+
+
 
     /** Must be provided an integer as a command line argument ARGS. */
     public static void main(String[] args) {
