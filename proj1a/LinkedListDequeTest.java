@@ -1,4 +1,6 @@
 /** Performs some basic linked list tests. */
+import org.junit.Assert;
+import org.junit.Test;
 public class LinkedListDequeTest {
 	
 	/* Utility method for printing out empty checks. */
@@ -36,13 +38,13 @@ public class LinkedListDequeTest {
 	public static void addIsEmptySizeTest() {
 		System.out.println("Running add/isEmpty/Size test.");
 		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
 		lld1.addFirst("front");
-		
+
 		// The && operator is the same as "and" in Python.
 		// It's a binary operator that returns true if both arguments true, and false otherwise.
 		passed = checkSize(1, lld1.size()) && passed;
@@ -58,7 +60,6 @@ public class LinkedListDequeTest {
 		lld1.printDeque();
 
 		printTestStatus(passed);
-		*/
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
@@ -67,22 +68,36 @@ public class LinkedListDequeTest {
 		System.out.println("Running add/remove test.");
 
 		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 		// should be empty 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
 		lld1.addFirst(10);
-		// should not be empty 
+		// should not be empty
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
 		lld1.removeFirst();
-		// should be empty 
+		// should be empty
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
 		printTestStatus(passed);
-		*/
+
 	}
+
+	@Test
+	public void addFirstTest(){
+		LinkedListDeque<Integer> lld = new LinkedListDeque<>();
+		lld.addFirst(4);
+		lld.addFirst(3);
+		lld.addFirst(2);
+		lld.addFirst(1);
+		int expectedSize = 4;
+		Assert.assertEquals(expectedSize,lld.size());
+		Assert.assertEquals((long)1,(long)lld.get(0));
+	}
+
+
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
