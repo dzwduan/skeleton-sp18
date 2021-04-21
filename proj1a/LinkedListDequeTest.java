@@ -63,7 +63,8 @@ public class LinkedListDequeTest {
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
-	public static void addRemoveTest() {
+	@Test
+	public void addRemoveTest() {
 
 		System.out.println("Running add/remove test.");
 
@@ -97,11 +98,45 @@ public class LinkedListDequeTest {
 		Assert.assertEquals((long)1,(long)lld.get(0));
 	}
 
+	@Test
+	public void removeFirstTest(){
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
+		lld1.addLast(0);
+		lld1.addLast(1);
+		lld1.addLast(2);
+		lld1.addLast(3);
+		int actual = lld1.removeFirst();
 
+		int expectedSize = 3;
+		Assert.assertEquals(expectedSize,lld1.size());
+		Assert.assertEquals((long)0,(long)actual);
+	}
+
+	@Test
+	public void getTest(){
+		LinkedListDeque<Integer> lld = new LinkedListDeque<>();
+		lld.addLast(0);
+		lld.addLast(1);
+		lld.removeLast();
+		int actual = lld.get(0);
+		int expected = 0;
+		Assert.assertEquals((long)expected,(long)actual);
+	}
+
+	@Test
+	public void getRecursiveTest(){
+		LinkedListDeque<Integer> lld = new LinkedListDeque<>();
+		lld.addLast(0);
+		lld.addLast(1);
+		lld.removeLast();
+		int actual = lld.getRecursive(0);
+		int expected = 0;
+		Assert.assertEquals((long)expected,(long)actual);
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
-		addRemoveTest();
+		//addRemoveTest();
 	}
 } 

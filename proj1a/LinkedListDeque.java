@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
     private int size;
-    public Node<T> sentinel;
+    private Node<T> sentinel;
 
     private  class Node<T>{
         public T val;
@@ -22,17 +22,25 @@ public class LinkedListDeque<T> {
     }
 
     public void addFirst(T item){
-        sentinel.next = new Node(item,sentinel,sentinel.next);
+        Node<T> first = new Node<T>(item,sentinel,sentinel.next);
+        first.prev = sentinel;
+        first.next = sentinel.next;
+        sentinel.next.prev = first;
+        sentinel.next = first;
         size += 1;
     }
 
     public void addLast(T item){
-        sentinel.prev = new Node(item,sentinel.prev,sentinel);
+        Node<T> last = new Node<T>(item,sentinel.prev,sentinel);
+        last.next = sentinel;
+        last.prev = sentinel.prev;
+        sentinel.prev.next = last;
+        sentinel.prev = last;
         size += 1;
     }
 
     public boolean isEmpty(){
-        if(sentinel.prev==sentinel.next && size == 0)
+        if(size == 0)
             return true;
         return false;
     }
@@ -54,7 +62,10 @@ public class LinkedListDeque<T> {
             return null;
         }
         T res = (T) sentinel.next.val;
-        sentinel.next = sentinel.next.next;
+        Node<T> mov_next = sentinel.next.next;
+        sentinel.next = null;
+        mov_next.prev = sentinel;
+        sentinel.next =mov_next;
         size -= 1;
         return res;
     }
@@ -64,7 +75,10 @@ public class LinkedListDeque<T> {
             return null;
         }
         T res = (T) sentinel.prev.val;
-        sentinel.prev = sentinel.prev.prev;
+        Node<T> mov_prev = sentinel.prev.prev;
+        sentinel.prev = null;
+        sentinel.prev = mov_prev;
+        mov_prev.next = sentinel;
         size -=1;
         return res;
     }
