@@ -94,13 +94,16 @@ public class LinkedListDeque<T> {
         return cur.val;
     }
 
-    public T getRecursive(int index){
+    private Node<T> getRecursiveNode(int index){
         if(index==0){
-            return (T)sentinel.next.val;
+            return sentinel.next;
         }
         else
-            return getRecursive(index-1);
+            return getRecursiveNode(index-1).next;
     }
 
+    public T getRecursive(int index){
+        return getRecursiveNode(index).val;
+    }
 
 }

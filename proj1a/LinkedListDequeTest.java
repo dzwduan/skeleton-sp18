@@ -127,10 +127,17 @@ public class LinkedListDequeTest {
 	public void getRecursiveTest(){
 		LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 		lld.addLast(0);
-		lld.addLast(1);
+		lld.removeFirst();
+		lld.addLast(2);
+		lld.removeFirst()  ;
+		lld.addFirst(4);
 		lld.removeLast();
-		int actual = lld.getRecursive(0);
-		int expected = 0;
+		lld.addLast(7);
+		lld.addFirst(8);
+
+		int actual = lld.getRecursive(1);
+		int actual2 = lld.get(1);
+		int expected = 7;
 		Assert.assertEquals((long)expected,(long)actual);
 	}
 

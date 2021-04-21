@@ -99,6 +99,14 @@ public class ArrayDequeTest {
         Assert.assertEquals((long)1,(long)arr.get(0));
     }
 
+    @Test
+    public void getTest(){
+        ArrayDeque<Integer> arr = new ArrayDeque<>();
+        int actual =  arr.get(0);
+        int expected = 0;
+        Assert.assertEquals((long)expected,(long)actual);
+    }
+
 
 
     public static void main(String[] args) {
