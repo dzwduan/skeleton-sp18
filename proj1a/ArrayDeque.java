@@ -81,7 +81,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (items.length < size >> 2) {
+        if (size < items.length >> 2) {
             shrink();
         }
 
@@ -100,7 +100,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (items.length < size >> 2) {
+        if (size < items.length >> 2) {
             shrink();
         }
 
@@ -108,7 +108,7 @@ public class ArrayDeque<T> {
             return null;
         }
         nextLast = minusOne(nextLast);
-        T res = items[minusOne(nextLast)];
+        T res = items[nextLast];
 
         items[nextLast] = null;
         if (!isEmpty()) {

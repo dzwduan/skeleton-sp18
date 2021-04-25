@@ -37,8 +37,6 @@ public class ArrayDequeTest {
      * && is the "and" operation. */
     @Test
     public void addIsEmptySizeTest() {
-        System.out.println("Running add/isEmpty/Size test.");
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         ArrayDeque<String> arr1 = new ArrayDeque<String>();
 
@@ -66,11 +64,6 @@ public class ArrayDequeTest {
     /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
     @Test
     public void addRemoveTest() {
-
-        System.out.println("Running add/remove test.");
-
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-
         ArrayDeque<Integer> arr1 = new ArrayDeque<Integer>();
         // should be empty 
         boolean passed = checkEmpty(true, arr1.isEmpty());
@@ -88,35 +81,38 @@ public class ArrayDequeTest {
     }
 
     @Test
-    public void addFirstTest(){
+    public void addFirstTest() {
         ArrayDeque<Integer> arr = new ArrayDeque<>();
         arr.addFirst(4);
         arr.addFirst(3);
         arr.addFirst(2);
         arr.addFirst(1);
         int expectedSize = 4;
-        Assert.assertEquals(expectedSize,arr.size());
-        Assert.assertEquals((long)1,(long)arr.get(0));
+        Assert.assertEquals(expectedSize, arr.size());
+        Assert.assertEquals((long) 1, (long) arr.get(0));
     }
 
     @Test
-    public void addFirstRemoveTest(){
+    public void addFirstRemoveTest() {
         ArrayDeque<Integer> arr = new ArrayDeque<>();
         arr.addFirst(0);
         arr.addFirst(1);
         arr.addFirst(2);
-        arr.addLast(3);
-        arr.size();
-        arr.removeLast();
-        arr.removeLast();
+        arr.addFirst(3);
+        arr.addFirst(4);
+        arr.addFirst(5);
+        arr.addFirst(6);
         arr.addFirst(7);
-        int actual = arr.removeFirst();
-        int expected = 7;
-        Assert.assertEquals(expected,actual);
+
+        arr.isEmpty();
+        arr.addFirst(9);
+        int actual = arr.removeLast();
+        int expected = 0;
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void getTest(){
+    public void getTest() {
         ArrayDeque<Integer> arr = new ArrayDeque<>();
         arr.addLast(0);
         arr.addLast(1);
@@ -131,7 +127,7 @@ public class ArrayDequeTest {
         arr.removeLast();
         int actual = arr.removeFirst();
         int expected = 11;
-        Assert.assertEquals((long)expected,(long)actual);
+        Assert.assertEquals((long) expected, (long) actual);
     }
 
 

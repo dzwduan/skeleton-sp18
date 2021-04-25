@@ -1,9 +1,6 @@
-/** Performs some basic linked list tests. */
 import org.junit.Assert;
 import org.junit.Test;
 public class LinkedListDequeTest {
-	
-	/* Utility method for printing out empty checks. */
 	public static boolean checkEmpty(boolean expected, boolean actual) {
 		if (expected != actual) {
 			System.out.println("isEmpty() returned " + actual + ", but expected: " + expected);
@@ -36,9 +33,6 @@ public class LinkedListDequeTest {
 	  *
 	  * && is the "and" operation. */
 	public static void addIsEmptySizeTest() {
-		System.out.println("Running add/isEmpty/Size test.");
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -66,9 +60,6 @@ public class LinkedListDequeTest {
 	@Test
 	public void addRemoveTest() {
 
-		System.out.println("Running add/remove test.");
-
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 		// should be empty 
@@ -87,19 +78,19 @@ public class LinkedListDequeTest {
 	}
 
 	@Test
-	public void addFirstTest(){
+	public void addFirstTest() {
 		LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 		lld.addFirst(4);
 		lld.addFirst(3);
 		lld.addFirst(2);
 		lld.addFirst(1);
 		int expectedSize = 4;
-		Assert.assertEquals(expectedSize,lld.size());
-		Assert.assertEquals((long)1,(long)lld.get(0));
+		Assert.assertEquals(expectedSize, lld.size());
+		Assert.assertEquals((long) 1, (long) lld.get(0));
 	}
 
 	@Test
-	public void removeFirstTest(){
+	public void removeFirstTest() {
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
 		lld1.addLast(0);
 		lld1.addLast(1);
@@ -108,28 +99,28 @@ public class LinkedListDequeTest {
 		int actual = lld1.removeFirst();
 
 		int expectedSize = 3;
-		Assert.assertEquals(expectedSize,lld1.size());
-		Assert.assertEquals((long)0,(long)actual);
+		Assert.assertEquals(expectedSize, lld1.size());
+		Assert.assertEquals((long) 0, (long) actual);
 	}
 
 	@Test
-	public void getTest(){
+	public void getTest() {
 		LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 		lld.addLast(0);
 		lld.addLast(1);
 		lld.removeLast();
 		int actual = lld.get(0);
 		int expected = 0;
-		Assert.assertEquals((long)expected,(long)actual);
+		Assert.assertEquals((long) expected, (long) actual);
 	}
 
 	@Test
-	public void getRecursiveTest(){
+	public void getRecursiveTest() {
 		LinkedListDeque<Integer> lld = new LinkedListDeque<>();
 		lld.addLast(0);
 		lld.removeFirst();
 		lld.addLast(2);
-		lld.removeFirst()  ;
+		lld.removeFirst();
 		lld.addFirst(4);
 		lld.removeLast();
 		lld.addLast(7);
@@ -138,7 +129,7 @@ public class LinkedListDequeTest {
 		int actual = lld.getRecursive(1);
 		int actual2 = lld.get(1);
 		int expected = 7;
-		Assert.assertEquals((long)expected,(long)actual);
+		Assert.assertEquals((long) expected, (long) actual);
 	}
 
 	public static void main(String[] args) {
