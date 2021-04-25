@@ -39,7 +39,7 @@ public class ArrayDeque<T> {
     }
 
     private void shrink() {
-        resize(size / 2);
+        resize(items.length / 2);
     }
 
     public void addFirst(T item) {

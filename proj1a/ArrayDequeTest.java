@@ -105,8 +105,13 @@ public class ArrayDequeTest {
         arr.addFirst(0);
         arr.addFirst(1);
         arr.addFirst(2);
+        arr.addLast(3);
+        arr.size();
+        arr.removeLast();
+        arr.removeLast();
+        arr.addFirst(7);
         int actual = arr.removeFirst();
-        int expected = 2;
+        int expected = 7;
         Assert.assertEquals(expected,actual);
     }
 
