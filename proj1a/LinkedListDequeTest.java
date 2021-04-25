@@ -1,6 +1,10 @@
+/** Performs some basic linked list tests. */
+
 import org.junit.Assert;
 import org.junit.Test;
 public class LinkedListDequeTest {
+
+	/* Utility method for printing out empty checks. */
 	public static boolean checkEmpty(boolean expected, boolean actual) {
 		if (expected != actual) {
 			System.out.println("isEmpty() returned " + actual + ", but expected: " + expected);
