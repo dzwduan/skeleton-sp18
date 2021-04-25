@@ -2,56 +2,65 @@ public class ArrayDeque<T> {
     /**implemetn circur array*/
     private int size;
     private T[] items;
-    private int capacity = 8;
-    private int nextFirst= 0;
-    private int nextLast = 1;
+    private int nextFirst;
+    private int nextLast ;
 
     public ArrayDeque(){
-        items = (T[]) new Object[capacity];
+        size = 8;
+        items = (T[]) new Object[size];
         size  = 0;
+        nextFirst = 0;
+        nextLast = 1;
     }
 
-    private void updateFirst(){
-        nextFirst = (nextFirst-1+capacity)%capacity;
+    private int plusOne(int index){
+        return (index+1)% items.length;
     }
 
-    private void updateLast(){
-        nextLast = (nextLast+1)%capacity;
+
+    private int minusOne(int index){
+        return (index-1+ items.length)%items.length;
+    }
+
+    private void resize(int capacity){
+        T[] newDeque = (T[]) new Object[capacity];
+        int oldIndex = plusOne(nextFirst);
+        for(int newIndex=0;newIndex<size;newIndex++){
+            newDeque[newIndex] = items[oldIndex];
+            oldIndex = plusOne(oldIndex);
+        }
+        items = newDeque;
+        nextFirst = capacity-1;
+        nextLast = size;
     }
 
     private void expand(){
-        if(size<capacity) return;
-        T[] a = (T[]) new Object[capacity<<=1];
-        System.arraycopy(items,0,a,0,size);
-        items = a;
+        resize(2*size);
     }
 
     private void shrink(){
-        if(size<<2 > capacity) return;
-        T[] oldItems = items;
-        items = (T[]) new Object[capacity>>=1];
-
-        for(int i=0;i<nextLast;i++){
-            items[i] = oldItems[i];
-        }
-        for(int i=nextFirst+1;i<size;i++){
-            items[i] = oldItems[i];
-        }
-        nextFirst = nextFirst - capacity;
+        resize(size/2);
     }
 
     public void addFirst(T item){
-        expand();
+        if(isFull())
+            expand();
         items[nextFirst] = item;
+        nextFirst = minusOne(nextFirst);
         size +=1;
-        updateFirst();
     }
 
     public void addLast(T item){
-        expand();
+        if(isFull())
+            expand();
         items[nextLast] = item;
+        nextLast = plusOne(nextLast);
         size +=1;
-        updateLast();
+    }
+
+
+    public boolean isFull(){
+        return items.length==size;
     }
 
     public boolean isEmpty(){
@@ -63,30 +72,35 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque(){
-        for(int i=(nextFirst+1)%capacity;i<nextLast;i++){
+        for(int i=(nextFirst+1)%size;i<nextLast;i=plusOne(i)){
             System.out.print(items[i]+" ");
         }
+        System.out.println();
     }
 
     public T removeFirst(){
-        shrink();
-        if(size==0) return null;
+        if(items.length<size>>2)
+            shrink();
+        if(isEmpty()) return null;
         T res = items[nextFirst];
-        nextFirst = (nextFirst+1)%capacity;
+        nextFirst = plusOne(nextFirst);
+        items[nextFirst] = null;
         size-=1;
         return res;
     }
 
     public T removeLast(){
-        shrink();
-        if(size==0) return null;
-        T res = items[nextLast];
-        nextLast = (nextLast-1)%capacity;
+        if(items.length<size>>2)
+            shrink();
+        if(isEmpty()) return null;
+        T res = items[minusOne(nextLast)];
+        nextLast = minusOne(nextLast);
+        items[nextLast] = null;
         size-=1;
         return res;
     }
 
     public T get(int index){
-        return items[(nextFirst+index+1)%capacity];
+        return items[(nextFirst+index+1)% items.length];
     }
 }
