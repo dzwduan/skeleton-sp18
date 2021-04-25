@@ -100,10 +100,32 @@ public class ArrayDequeTest {
     }
 
     @Test
+    public void addFirstRemoveTest(){
+        ArrayDeque<Integer> arr = new ArrayDeque<>();
+        arr.addFirst(0);
+        arr.addFirst(1);
+        arr.addFirst(2);
+        int actual = arr.removeFirst();
+        int expected = 2;
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void getTest(){
         ArrayDeque<Integer> arr = new ArrayDeque<>();
-        int actual =  arr.get(0);
-        int expected = 0;
+        arr.addLast(0);
+        arr.addLast(1);
+        arr.addLast(2);
+        arr.removeLast();
+        arr.removeLast();
+        arr.removeLast();
+        arr.addLast(6);
+        arr.addLast(10);
+        arr.addFirst(11);
+        arr.addLast(12);
+        arr.removeLast();
+        int actual = arr.removeFirst();
+        int expected = 11;
         Assert.assertEquals((long)expected,(long)actual);
     }
 
